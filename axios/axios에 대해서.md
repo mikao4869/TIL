@@ -22,6 +22,10 @@ axios는 비동기이다. `비동기`인 경우에는 작업이 완료되지 않
 
 *특징 : async 함수 내에서만 await를 사용할 수 있다.*
 
+      async function handleSubmit() {
+	  return paymentData
+    }
+
 
 + ### await: 비동기 함수(Promise)가 처리될 때까지 기다린다.
 즉, await가 붙은 비동기 함수는 실행이 끝날 때까지 그 다음 코드의 실행을 잠시 멈춘다.
