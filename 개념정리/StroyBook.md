@@ -52,4 +52,9 @@ previs.ts를 통해 ui 가 어떻게 렌더링 될것인지 보여줄것이다.
 ## 실행
 
       npm run storybook
-      
+
+
+
+## Decorators
+
+컴포넌트에 
