@@ -10,4 +10,4 @@ user-select: none;
 
 
 
-이러면 방지된다.dd
+이러면 방지된다
