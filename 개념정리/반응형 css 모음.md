@@ -44,3 +44,42 @@ ex) F12 이 누르고 왔다리 갔다리 하면 화면 줄어드는거 확인�
 
 ## %
 부모 요소 크기에 대한 상대적인 비율입니다. 부모 크기에 따라 유동적으로 크기가 변합니다.
+
+
+# 미디어 쿼리
+약간 if문으로 생각하면 된다.
+
+ex) 
+```javascript
+@media (max-width: 768px) {
+  /* 768px 이하(주로 태블릿, 모바일)에서 적용할 스타일 */
+}
+
+```
+
+```javascript
+
+/* 노트북 & 태블릿 가로 (해상도 1024px ~ 1279px)*/ 
+@media all and (min-width:1024px) and (max-width:1279px) { 
+  //스타일 설정
+} 
+
+/* 태블릿 가로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) { 
+  //스타일 설정
+} 
+
+/* 모바일 가로 & 태블릿 세로 (해상도 480px ~ 767px)*/ 
+@media all and (min-width:480px) and (max-width:767px) {
+  //스타일 설정
+} 
+
+/* 모바일 세로 (해상도 ~ 479px)*/ 
+@media all and (max-width:479px) {
+  //스타일 설정
+}
+
+
+```
+
+
