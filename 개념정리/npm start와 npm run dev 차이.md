@@ -70,3 +70,26 @@ Next.js는 **개발 서버 명령어가 dev**로 정의되어 있어요.
 
 ### Next js : `npm run dev` !
 ### React:  `npm start`
+
+
+
+## 그럼 똑같은 next js에서의
+
+`npm run dev와`
+
+`npm run build`와
+`npm run start`는 뭘까?
+
+
+하나하나씩 설명을 하자면
+
+
+#### npm run dev : 개발모드로 실행
+#### npm run build : 개발이 끝난후 배포를 하기 위해서 하는 명령어  
+--> 코드 압축,  
+#### npm run start : 배포를끝난후 서비스를 시작하는 명령어
+
+--> build를 한다음에한다.
+
+
+![이](이미지/nextjs%20명령어%20차이.png)
