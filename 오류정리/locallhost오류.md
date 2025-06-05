@@ -5,13 +5,14 @@
 
 그럼 어떻게 해야할까?
 
-백엔드: **localhost(http)를 https로 바꿔** 
+백엔드: **localhost(http) --> https로 바꿔** 
 
 근데 왜 ? 바꿔야하지?
 
-    백엔드가 HTTPS이고 프론트엔드가 HTTP라서 서로 다른 origin으로 인식되어 요청이 차단되는 상황
+    백엔드가 HTTPS이고 프론트엔드가 HTTP라서 서로 다른 origin으로 인식되어 요청이 차단됨
 
-아하 그러면 우선 오류에 대해서 하나하나 차근하게 알아볼까?
+아하 이런 문제로인해서 안되구나.
+그러면 우선 오류에 대해서 하나하나 차근하게 알아볼까?
 
 # 오류 
 
@@ -21,7 +22,7 @@ requests.js:1
            POST https://api.gsm-dawa.com/auth/signin net::ERR_FAILED
 ```
 
-오류 해석
+### 오류 해석
 
       요청 출처(origin): https://localhost:3000
 
@@ -34,11 +35,28 @@ requests.js:1
 **결론**: 아하 CORS 정책으로 인해서 바꾸먹었구나.! 
 그러면 CORS정책이 뭐지???
 
-## cors 오류
+## CORS 정책
 
-cors오류는?
+CORS 정책은?
 
-**정의**: CORS (Cross-Origin Resource Sharing)는 웹 어플리케이션에서 다른 도메인의 리소스에 접근할 때 발생하는 보안 이슈를 해결하기 위한 표준 방법
+**정의**: CORS (Cross-Origin Resource Sharing)는 웹 `브라우저가 출처(origin)가 다른 서버에 요청을 보낼 때, 보안을 위해 이를 제한하거나 허용하는 정책입니다. ` 을 말하는것이다. 
+
+출처가 뭐지..?
+
+### (더보기)출처에 대해서
+
+![alt text](image.png)
+
+출처(Origin): `프로토콜 + 도메인 + 포트`가 모두 같아야 같은 출처로 간주합니다.
++  프로토콜: http, https
++ 도메인 :  example.com
++ 포트 : 3000, 8080
+
+아하 프론트와 백 출처가 같아야지 CORS 오류가 안나는거구나..!
+그럼 지금 상황에서 CORS 오류가 나는 이유는 출처가 다르기 때문이구나!
+***
+
+즉 CORS 정책은 프론트와 백엔드의 출처가 같은 출처인지 확인하느거
 
 즉 쉽게 말해서 **깐깐스러운 보안정책?**
 
