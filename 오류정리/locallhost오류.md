@@ -80,3 +80,65 @@ cors 작동 방법
 
 ## localhost를 http --> https로 변환하기
 
+
+
+# 시도했던 방법들
+
+# 1. 프록시(proxy) 방법
+
+**프록시(proxy)란?**
+프록시는 
+
+클라이언트(브라우저)가 직접 백엔드 서버에 요청하지 않고, **내가 제어할 수 있는 서버(또는 개발 서버)**에 요청을 보내고, 그 서버가 대신 백엔드에 요청해서 데이터를 받아와 클라이언트에 다시 전달합니다.
+
+## 왜 지금같은 상황에서 프록시를 사용해야 하나?
+브라우저 입장에서 보면, 프론트엔드 개발 서버(localhost:3000)와 프록시 서버(localhost:3000 혹은 동일 도메인) 사이 요청은 **동일 출처(same-origin)**로 간주되어 CORS 오류가 발생하지 않습니다.
+
+프록시 서버가 백엔드와 통신할 때는 서버 간 통신이기 때문에 CORS 제약이 없고, 프로토콜/도메인이 달라도 자유롭게 요청 가능합니다.
+
+
+## 프록시 사용법 
+
+`next.confing.js`
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/auth/:path*',
+        destination: 'https://api.gsm-dawa.com/api/auth/:path*', // 프록시 대상
+      },
+    ]
+  },
+}
+
+module.exports = nextConfig
+
+```
+`login.tsx`
+
+```ts
+
+        try {
+            const response = await axios.post(
+                `/api/auth/signin`,
+                {
+                    email: fullEmail,
+                    password: PasswordValue,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true,
+                }
+            );
+        }
+```
+
+
+결과 : 
+
+![alt text](image-1.png)
+응 500~
