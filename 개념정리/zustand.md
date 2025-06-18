@@ -20,3 +20,43 @@
 ```ts
 npm install zustand
 ```
+
+
+store 상태 정의 
+```TS
+// src/store/useCounterStore.ts
+import { create } from 'zustand';
+
+interface CounterState {
+  count: number;
+  increase: () => void;
+  decrease: () => void;
+}
+
+export const useCounterStore = create<CounterState>((set) => ({
+  count: 0,
+  increase: () => set((state) => ({ count: state.count + 1 })),
+  decrease: () => set((state) => ({ count: state.count - 1 })),
+}));
+```
+
+
+컴포넌트 사용
+```ts
+// Counter.tsx
+import { useCounterStore } from '../store/useCounterStore';
+
+function Counter() {
+  const { count, increase, decrease } = useCounterStore();
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={increase}>+</button>
+      <button onClick={decrease}>-</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
